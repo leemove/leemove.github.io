@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>小木屋</title>
-    <link>https://leemove.github.io/</link>
-    <description>Recent content on 小木屋</description>
+    <title>Angular on 小木屋</title>
+    <link>https://leemove.github.io/tags/angular/</link>
+    <description>Recent content in Angular on 小木屋</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Mon, 23 Nov 2020 17:04:31 +0800</lastBuildDate><atom:link href="https://leemove.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 23 Nov 2020 17:04:31 +0800</lastBuildDate><atom:link href="https://leemove.github.io/tags/angular/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>rxjs常见使用错误</title>
       <link>https://leemove.github.io/post/rxjs-common-error/</link>
@@ -32,18 +32,6 @@
       
       <guid>https://leemove.github.io/post/rxjs-http-request/</guid>
       <description>结合rxjs，实现高效http请求 在项目中经常会碰到这样的需求，用户在输入框输入数据，需要实时调用后台api,根据结果对输入进行重复校验，或</description>
-    </item>
-    
-    <item>
-      <title>CSS Boxsizing</title>
-      <link>https://leemove.github.io/post/css-boxsizing/</link>
-      <pubDate>Mon, 11 Apr 2016 17:19:43 +0800</pubDate>
-      
-      <guid>https://leemove.github.io/post/css-boxsizing/</guid>
-      <description>&lt;h1 id=&#34;css-boxsizing&#34;&gt;CSS Boxsizing&lt;/h1&gt;
-&lt;blockquote&gt;
-&lt;p&gt;这个属性只有两个值，分别是border-box,content-box;&lt;/p&gt;
-&lt;/blockquote&gt;</description>
     </item>
     
   </channel>

@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>rxjs常见使用错误 - 小木屋</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="leemove" /><meta name="description" content="rxjs常见使用错误 记得取消订阅 What is a Subscription? A Subscription is an object that represents a disposable resource, usually the execution of an Observable. A Subscription has one important method,unsubscribe, that takes no argument and just disposes the resource held by the subscription observable在被订阅的" /><meta name="keywords" content="Angular, Typescript, Vue" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.75.0 with theme even" />
+
+
+<link rel="canonical" href="https://leemove.github.io/post/rxjs-common-error/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.c7bc1becf36bcf6a9ebd25d2947e43a2eb745ddb0c9a32b43126fd7fa460c351.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="rxjs常见使用错误" />
+<meta property="og:description" content="rxjs常见使用错误 记得取消订阅 What is a Subscription? A Subscription is an object that represents a disposable resource, usually the execution of an Observable. A Subscription has one important method,unsubscribe, that takes no argument and just disposes the resource held by the subscription observable在被订阅的" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://leemove.github.io/post/rxjs-common-error/" />
+<meta property="article:published_time" content="2020-11-23T17:04:31+08:00" />
+<meta property="article:modified_time" content="2020-11-23T17:04:31+08:00" />
+<meta itemprop="name" content="rxjs常见使用错误">
+<meta itemprop="description" content="rxjs常见使用错误 记得取消订阅 What is a Subscription? A Subscription is an object that represents a disposable resource, usually the execution of an Observable. A Subscription has one important method,unsubscribe, that takes no argument and just disposes the resource held by the subscription observable在被订阅的">
+<meta itemprop="datePublished" content="2020-11-23T17:04:31+08:00" />
+<meta itemprop="dateModified" content="2020-11-23T17:04:31+08:00" />
+<meta itemprop="wordCount" content="955">
+
+
+
+<meta itemprop="keywords" content="Angular,rxjs," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="rxjs常见使用错误"/>
+<meta name="twitter:description" content="rxjs常见使用错误 记得取消订阅 What is a Subscription? A Subscription is an object that represents a disposable resource, usually the execution of an Observable. A Subscription has one important method,unsubscribe, that takes no argument and just disposes the resource held by the subscription observable在被订阅的"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">小木屋</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">小木屋</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">rxjs常见使用错误</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2020-11-23 </span>
+        <div class="post-category">
+            <a href="/categories/%E5%89%8D%E7%AB%AF/"> 前端 </a>
+            </div>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#rxjs常见使用错误">rxjs常见使用错误</a>
+      <ul>
+        <li><a href="#记得取消订阅">记得取消订阅</a></li>
+        <li><a href="#不要重复订阅">不要重复订阅</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <h1 id="rxjs常见使用错误">rxjs常见使用错误</h1>
+<h2 id="记得取消订阅">记得取消订阅</h2>
+<blockquote>
+<p>What is a Subscription? A Subscription is an object that represents a disposable resource, usually the execution of an Observable. A Subscription has one important method,unsubscribe, that takes no argument and just disposes the resource held by the subscription</p>
+</blockquote>
+<p><code>observable</code>在被订阅的情况下，只有在以下几种情况下会被销毁释放内存</p>
+<pre><code>- Observable 完成值的发送，执行 Observable.onComplete()。
+- Observable 发生错误，执行 Observable.OnError()。
+- 订阅者主动取消订阅，执行 subscription.unsubscribe()。
+</code></pre>
+<p>前两种会自动释放，而最后一种则需要用户手动释放。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-ts" data-lang="ts"><span class="kr">export</span> <span class="kr">class</span> <span class="nx">MemComponent</span> <span class="kr">implements</span> <span class="nx">OnInit</span> <span class="p">{</span>
+
+  <span class="kr">constructor</span><span class="p">(</span><span class="kr">private</span> <span class="nx">router</span>: <span class="kt">Router</span><span class="p">)</span> <span class="p">{</span> <span class="p">}</span>
+
+  <span class="nx">ngOnInit</span><span class="p">()</span><span class="o">:</span> <span class="k">void</span> <span class="p">{</span>
+    <span class="c1">// 每次组件初始化都会监听路由事件，组件销毁后仍然会继续监听，引起内存泄漏。
+</span><span class="c1"></span>    <span class="k">this</span><span class="p">.</span><span class="nx">router</span><span class="p">.</span><span class="nx">events</span>
+      <span class="p">.</span><span class="nx">pipe</span><span class="p">(</span><span class="nx">filter</span><span class="p">(</span><span class="nx">e</span> <span class="o">=&gt;</span> <span class="nx">e</span> <span class="k">instanceof</span> <span class="nx">NavigationEnd</span><span class="p">))</span>
+      <span class="p">.</span><span class="nx">subscribe</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;导航结束&#39;</span><span class="p">);</span>
+      <span class="p">});</span>
+  <span class="p">}</span>
+
+<span class="p">}</span>
+
+</code></pre></td></tr></table>
+</div>
+</div><p>显然在ng项目中大多数情况下我们无需手动释放，angular帮我们做了很多：</p>
+<ul>
+<li>
+<p>Angular 中通过 HttpClient 执行 Http Request 返回的 Observables，订阅这些 Observables 拿到 API 返回的数据，不需要调用 unsubscribe() 取消订阅。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-ts" data-lang="ts"><span class="kr">export</span> <span class="kr">class</span> <span class="nx">XHRConnection</span> <span class="kr">implements</span> <span class="nx">Connection</span> <span class="p">{</span>
+  <span class="kr">constructor</span><span class="p">(</span><span class="nx">req</span>: <span class="kt">Request</span><span class="p">,</span> <span class="nx">browserXHR</span>: <span class="kt">BrowserXhr</span><span class="p">,</span> <span class="nx">baseResponseOptions?</span>: <span class="kt">ResponseOptions</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">request</span> <span class="o">=</span> <span class="nx">req</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">response</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Observable</span><span class="p">&lt;</span><span class="nt">Response</span><span class="p">&gt;((</span><span class="nx">responseObserver</span>: <span class="kt">Observer</span><span class="p">&lt;</span><span class="nt">Response</span><span class="p">&gt;)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+       <span class="p">......</span>
+       <span class="p">......</span>
+      <span class="kr">const</span> <span class="nx">onLoad</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="kr">const</span> <span class="nx">response</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Response</span><span class="p">(</span><span class="nx">responseOptions</span><span class="p">);</span>
+        <span class="nx">response</span><span class="p">.</span><span class="nx">ok</span> <span class="o">=</span> <span class="nx">isSuccess</span><span class="p">(</span><span class="nx">status</span><span class="p">);</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">ok</span><span class="p">)</span> <span class="p">{</span>
+          <span class="nx">responseObserver</span><span class="p">.</span><span class="nx">next</span><span class="p">(</span><span class="nx">response</span><span class="p">);</span>
+          <span class="c1">// response sucess, then call complete to end current responseObserver
+</span><span class="c1"></span>          <span class="nx">responseObserver</span><span class="p">.</span><span class="nx">complete</span><span class="p">();</span>
+          <span class="k">return</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="nx">responseObserver</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="nx">response</span><span class="p">);</span>
+      <span class="p">};</span>
+      <span class="kr">const</span> <span class="nx">onError</span> <span class="o">=</span> <span class="p">(</span><span class="nx">err</span>: <span class="kt">ErrorEvent</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+       <span class="p">......</span>
+       <span class="p">......</span>
+        <span class="c1">// response error, then call error to end current responseObserver
+</span><span class="c1"></span>        <span class="nx">responseObserver</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="k">new</span> <span class="nx">Response</span><span class="p">(</span><span class="nx">responseOptions</span><span class="p">));</span>
+      <span class="p">};</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>Angular AsyncPipe，不需要调用 unsubscribe()取消订阅。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-ts" data-lang="ts"><span class="kd">@Injectable</span><span class="p">()</span>
+<span class="kd">@Pipe</span><span class="p">({</span><span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;async&#39;</span><span class="p">,</span> <span class="nx">pure</span>: <span class="kt">false</span><span class="p">})</span>
+<span class="kr">export</span> <span class="kr">class</span> <span class="nx">AsyncPipe</span> <span class="kr">implements</span> <span class="nx">OnDestroy</span><span class="p">,</span> <span class="nx">PipeTransform</span> <span class="p">{</span>
+  
+  <span class="p">......</span>
+  <span class="kr">private</span> <span class="nx">_subscription</span>: <span class="kt">SubscriptionLike</span><span class="o">|</span><span class="nx">Promise</span><span class="p">&lt;</span><span class="nt">any</span><span class="p">&gt;</span><span class="o">|</span><span class="kc">null</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+  <span class="p">......</span>
+  <span class="kr">constructor</span><span class="p">(</span><span class="kr">private</span> <span class="nx">_ref</span>: <span class="kt">ChangeDetectorRef</span><span class="p">)</span> <span class="p">{}</span>
+  
+  <span class="nx">ngOnDestroy</span><span class="p">()</span><span class="o">:</span> <span class="k">void</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_subscription</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">_dispose</span><span class="p">();</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+  <span class="p">......</span>
+  <span class="p">......</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>除了调用<code>unsubscribe</code>之外，我们可以使用<code>take</code>，<code>takeWhile</code>，<code>first</code>,<code>takeUntil</code>本例中我们使用比较常用的<code>takeUntil</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-ts" data-lang="ts"><span class="kr">export</span> <span class="kr">class</span> <span class="nx">MemComponent</span> <span class="kr">implements</span> <span class="nx">OnInit</span><span class="p">,</span> <span class="nx">OnDestroy</span> <span class="p">{</span>
+        
+  <span class="nx">destory$</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Subject</span><span class="p">();</span>
+  
+  <span class="kr">constructor</span><span class="p">(</span><span class="kr">private</span> <span class="nx">router</span>: <span class="kt">Router</span><span class="p">)</span> <span class="p">{</span> <span class="p">}</span>
+  
+  
+  <span class="nx">ngOnInit</span><span class="p">()</span><span class="o">:</span> <span class="k">void</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">router</span><span class="p">.</span><span class="nx">events</span>
+      <span class="p">.</span><span class="nx">pipe</span><span class="p">(</span><span class="nx">filter</span><span class="p">(</span><span class="nx">e</span> <span class="o">=&gt;</span> <span class="nx">e</span> <span class="k">instanceof</span> <span class="nx">NavigationStart</span><span class="p">))</span>
+      <span class="p">.</span><span class="nx">subscribe</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;导航开始&#39;</span><span class="p">);</span>
+      <span class="p">});</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">router</span><span class="p">.</span><span class="nx">events</span>
+      <span class="p">.</span><span class="nx">pipe</span><span class="p">(</span>
+        <span class="nx">filter</span><span class="p">(</span><span class="nx">e</span> <span class="o">=&gt;</span> <span class="nx">e</span> <span class="k">instanceof</span> <span class="nx">NavigationEnd</span><span class="p">),</span>
+        <span class="nx">takeUntil</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">destory$</span><span class="p">)</span>
+        <span class="p">)</span>
+      <span class="p">.</span><span class="nx">subscribe</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;导航结束&#39;</span><span class="p">);</span>
+      <span class="p">});</span>
+  <span class="p">}</span>
+  
+  <span class="nx">ngOnDestroy</span><span class="p">()</span><span class="o">:</span> <span class="k">void</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">destory$</span><span class="p">.</span><span class="nx">next</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">destory$</span><span class="p">.</span><span class="nx">unsubscribe</span><span class="p">();</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="不要重复订阅">不要重复订阅</h2>
+<p>以下代码存在哪些问题？</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-ts" data-lang="ts">  <span class="c1">// 选择框
+</span><span class="c1"></span>  <span class="nx">select$</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Subject</span><span class="p">();</span>
+  <span class="c1">// 图表选择条件
+</span><span class="c1"></span>  <span class="nx">chart$</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Subject</span><span class="p">();</span>
+  <span class="c1">// 表格选择条件
+</span><span class="c1"></span>  <span class="nx">table$</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Subject</span><span class="p">();</span>
+  
+  <span class="nx">ngOnInit</span><span class="p">()</span><span class="o">:</span> <span class="k">void</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">select$</span><span class="p">.</span><span class="nx">subscribe</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">chart$</span><span class="p">.</span><span class="nx">subscribe</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">getChartData</span><span class="p">())</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">table$</span><span class="p">.</span><span class="nx">subscribe</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">getTableData</span><span class="p">())</span>
+    <span class="p">})</span>
+  <span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>如果感觉不是很清晰，那可以分析以下代码</p>
+</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-ts" data-lang="ts"><span class="kr">const</span> <span class="nx">child</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">&#39;#child&#39;</span><span class="p">);</span>
+<span class="nb">document</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">child</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;child被点击&#39;</span><span class="p">);</span>
+  <span class="p">});</span>
+<span class="p">});</span>
+</code></pre></td></tr></table>
+</div>
+</div>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">leemove</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2020-11-23
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/angular/">Angular</a>
+          <a href="/tags/rxjs/">rxjs</a>
+          </div>
+      <nav class="post-nav">
+        
+        <a class="next" href="/post/rxjs-event-streams/">
+            <span class="next-text nav-default">使用rxjs管理页面事件流</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:hg_limu@163.com" class="iconfont icon-email" title="email"></a>
+  <a href="https://leemove.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2019 - 
+    2020<span class="heart"><i class="iconfont icon-heart"></i></span><span>leemove</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

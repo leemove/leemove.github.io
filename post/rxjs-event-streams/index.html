@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>使用rxjs管理页面事件流 - 小木屋</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="leemove" /><meta name="description" content="使用rxjs管理页面事件流 在后台系统，以及数据系统中，一个区域内经常包含多个输入框，按钮等等操作，分别控制页面内的不同功能。往往我们在注册事" /><meta name="keywords" content="Angular, Typescript, Vue" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.75.0 with theme even" />
+
+
+<link rel="canonical" href="https://leemove.github.io/post/rxjs-event-streams/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.c7bc1becf36bcf6a9ebd25d2947e43a2eb745ddb0c9a32b43126fd7fa460c351.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="使用rxjs管理页面事件流" />
+<meta property="og:description" content="使用rxjs管理页面事件流 在后台系统，以及数据系统中，一个区域内经常包含多个输入框，按钮等等操作，分别控制页面内的不同功能。往往我们在注册事" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://leemove.github.io/post/rxjs-event-streams/" />
+<meta property="article:published_time" content="2020-11-23T17:03:21+08:00" />
+<meta property="article:modified_time" content="2020-11-23T17:03:21+08:00" />
+<meta itemprop="name" content="使用rxjs管理页面事件流">
+<meta itemprop="description" content="使用rxjs管理页面事件流 在后台系统，以及数据系统中，一个区域内经常包含多个输入框，按钮等等操作，分别控制页面内的不同功能。往往我们在注册事">
+<meta itemprop="datePublished" content="2020-11-23T17:03:21+08:00" />
+<meta itemprop="dateModified" content="2020-11-23T17:03:21+08:00" />
+<meta itemprop="wordCount" content="800">
+
+
+
+<meta itemprop="keywords" content="Angular,rxjs," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="使用rxjs管理页面事件流"/>
+<meta name="twitter:description" content="使用rxjs管理页面事件流 在后台系统，以及数据系统中，一个区域内经常包含多个输入框，按钮等等操作，分别控制页面内的不同功能。往往我们在注册事"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">小木屋</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">小木屋</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">使用rxjs管理页面事件流</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2020-11-23 </span>
+        <div class="post-category">
+            <a href="/categories/%E5%89%8D%E7%AB%AF/"> 前端 </a>
+            </div>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#使用rxjs管理页面事件流">使用rxjs管理页面事件流</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <h1 id="使用rxjs管理页面事件流">使用rxjs管理页面事件流</h1>
+<p>在后台系统，以及数据系统中，一个区域内经常包含多个输入框，按钮等等操作，分别控制页面内的不同功能。往往我们在注册事件的回调中发起请求，这样的方式将导致以下问题：</p>
+<p>​	1. 事件回调函数承担责任较多，有时需要联动其他条件，触发更新数据，同时还要在回调中处理自身数据问题。</p>
+<p>​	2.事件管理不清晰，当多个条件同时变更，存在联动等情况下处理过于复杂，扩展性交差。</p>
+<p>​	3.http请求效率问题，同上文中http请求问题。</p>
+<p><img src="https://raw.githubusercontent.com/leemove/pics/master/public/image-20201119162918178.png" alt="image-20201119162918178"></p>
+<p>我们可以把每个输入的可变化值看成是一个流，代码中用subject来实现，功能重复的流可以聚合成为同一个流，供后续使用。</p>
+<p><img src="https://raw.githubusercontent.com/leemove/pics/master/public/image-20201119165406487.png" alt="image-20201119165406487"></p>
+<p>代码实现如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span><span class="lnt">70
+</span><span class="lnt">71
+</span><span class="lnt">72
+</span><span class="lnt">73
+</span><span class="lnt">74
+</span><span class="lnt">75
+</span><span class="lnt">76
+</span><span class="lnt">77
+</span><span class="lnt">78
+</span><span class="lnt">79
+</span><span class="lnt">80
+</span><span class="lnt">81
+</span><span class="lnt">82
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-ts" data-lang="ts"><span class="kd">@Component</span><span class="p">({</span>
+  <span class="nx">selector</span><span class="o">:</span> <span class="s1">&#39;app-event-stream&#39;</span><span class="p">,</span>
+  <span class="nx">template</span><span class="o">:</span> <span class="sb">`
+</span><span class="sb">    &lt;div&gt;&lt;label&gt;label:1 修改我tableData:1234都更新&lt;/label&gt;&lt;input type=”nbumber“ [(ngModel)]=&#34;str1&#34; (ngModelChange)=&#34;input1$.next($event)&#34;&gt;&lt;/div&gt;
+</span><span class="sb">    &lt;div&gt;&lt;label&gt;label:2 修改我tableData:234都更新&lt;/label&gt;&lt;input type=”nbumber“ [(ngModel)]=&#34;str2&#34; (ngModelChange)=&#34;input2$.next($event)&#34;&gt;&lt;/div&gt;
+</span><span class="sb">    &lt;div&gt;&lt;label&gt;label:3 修改我tableData:34都更新&lt;/label&gt;&lt;input type=”nbumber“ [(ngModel)]=&#34;str3&#34; (ngModelChange)=&#34;input3$.next($event)&#34;&gt;&lt;/div&gt;
+</span><span class="sb">    &lt;div&gt;&lt;label&gt;label:4 修改我tableData:4更新&lt;/label&gt;&lt;input type=”nbumber“ [(ngModel)]=&#34;str4&#34; (ngModelChange)=&#34;input4$.next($event)&#34;&gt;&lt;/div&gt;
+</span><span class="sb">    &lt;p&gt;table1Data: {{table1Data}}&lt;/p&gt;
+</span><span class="sb">    &lt;p&gt;table2Data: {{table2Data}}&lt;/p&gt;
+</span><span class="sb">    &lt;p&gt;table3Data: {{table3Data}}&lt;/p&gt;
+</span><span class="sb">    &lt;p&gt;table4Data: {{table4Data}}&lt;/p&gt;
+</span><span class="sb">  `</span><span class="p">,</span>
+  <span class="nx">styleUrls</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;./event-stream.component.scss&#39;</span><span class="p">]</span>
+<span class="p">})</span>
+<span class="kr">export</span> <span class="kr">class</span> <span class="nx">EventStreamComponent</span> <span class="kr">implements</span> <span class="nx">OnInit</span> <span class="p">{</span>
+
+  <span class="c1">// 分别对应页面输入事件流
+</span><span class="c1"></span>  <span class="nx">input1$</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">BehaviorSubject</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">);</span>
+  <span class="nx">input2$</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">BehaviorSubject</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">);</span>
+  <span class="nx">input3$</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">BehaviorSubject</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">);</span>
+  <span class="nx">input4$</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">BehaviorSubject</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">);</span>
+
+  <span class="c1">// 分别对应页面输入值
+</span><span class="c1"></span>  <span class="nx">str1</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
+  <span class="nx">str2</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
+  <span class="nx">str3</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
+  <span class="nx">str4</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
+
+  <span class="c1">// 分别对应页面数据展示
+</span><span class="c1"></span>  <span class="nx">table1Data</span><span class="o">?</span><span class="p">;</span>
+  <span class="nx">table2Data</span><span class="o">?</span><span class="p">;</span>
+  <span class="nx">table3Data</span><span class="o">?</span><span class="p">;</span>
+  <span class="nx">table4Data</span><span class="o">?</span><span class="p">;</span>
+
+
+  <span class="nx">table4$</span>: <span class="kt">Observable</span><span class="p">&lt;</span><span class="nt">string</span><span class="p">&gt;;</span>
+  <span class="nx">table3$</span>: <span class="kt">Observable</span><span class="p">&lt;</span><span class="nt">string</span><span class="p">&gt;;</span>
+  <span class="nx">table2$</span>: <span class="kt">Observable</span><span class="p">&lt;</span><span class="nt">string</span><span class="p">&gt;;</span>
+  <span class="nx">table1$</span>: <span class="kt">Observable</span><span class="p">&lt;</span><span class="nt">string</span><span class="p">&gt;;</span>
+
+  <span class="nx">getTableData</span><span class="p">(</span><span class="nx">strs</span>: <span class="kt">string</span><span class="p">[])</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="k">of</span><span class="p">(</span><span class="nx">strs</span><span class="p">.</span><span class="nx">reduce</span><span class="p">((</span><span class="nx">accumulator</span><span class="p">,</span> <span class="nx">currentValue</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">accumulator</span> <span class="o">+</span> <span class="s1">&#39;+&#39;</span> <span class="o">+</span> <span class="nx">currentValue</span><span class="p">));</span>
+  <span class="p">}</span>
+
+  <span class="kr">constructor</span><span class="p">()</span> <span class="p">{</span> <span class="p">}</span>
+
+  <span class="kr">private</span> <span class="nx">pipeCommonInput</span><span class="p">&lt;</span><span class="nt">T</span><span class="p">&gt;(</span><span class="nx">ob</span>: <span class="kt">Observable</span><span class="p">&lt;</span><span class="nt">T</span><span class="p">&gt;)</span><span class="o">:</span> <span class="nx">Observable</span><span class="p">&lt;</span><span class="nt">T</span><span class="p">&gt;</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">ob</span><span class="p">.</span><span class="nx">pipe</span><span class="p">(</span>
+      <span class="nx">debounceTime</span><span class="p">(</span><span class="mi">300</span><span class="p">),</span>
+      <span class="nx">distinctUntilChanged</span><span class="p">(),</span>
+    <span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="nx">ngOnInit</span><span class="p">()</span><span class="o">:</span> <span class="k">void</span> <span class="p">{</span>
+    <span class="c1">// table4数据订阅
+</span><span class="c1"></span>    <span class="k">this</span><span class="p">.</span><span class="nx">table4$</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">pipeCommonInput</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">input4$</span><span class="p">);</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">table3$</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">pipeCommonInput</span><span class="p">(</span><span class="nx">merge</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">input4$</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">input3$</span><span class="p">));</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">table2$</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">pipeCommonInput</span><span class="p">(</span><span class="nx">merge</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">input4$</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">input3$</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">input2$</span><span class="p">));</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">table1$</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">pipeCommonInput</span><span class="p">(</span><span class="nx">merge</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">input4$</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">input3$</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">input2$</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">input1$</span><span class="p">));</span>
+
+    <span class="k">this</span><span class="p">.</span><span class="nx">table4$</span>
+    <span class="p">.</span><span class="nx">pipe</span><span class="p">(</span><span class="nx">switchMap</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="k">this</span><span class="p">.</span><span class="nx">getTableData</span><span class="p">([</span><span class="k">this</span><span class="p">.</span><span class="nx">str4</span><span class="p">])))</span>
+    <span class="p">.</span><span class="nx">subscribe</span><span class="p">(</span><span class="nx">res</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">table4Data</span> <span class="o">=</span> <span class="nx">res</span><span class="p">;</span>
+    <span class="p">});</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">table3$</span>
+    <span class="p">.</span><span class="nx">pipe</span><span class="p">(</span><span class="nx">switchMap</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="k">this</span><span class="p">.</span><span class="nx">getTableData</span><span class="p">([</span><span class="k">this</span><span class="p">.</span><span class="nx">str4</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">str3</span><span class="p">])))</span>
+    <span class="p">.</span><span class="nx">subscribe</span><span class="p">(</span><span class="nx">res</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">table3Data</span> <span class="o">=</span> <span class="nx">res</span><span class="p">;</span>
+    <span class="p">});</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">table2$</span>
+    <span class="p">.</span><span class="nx">pipe</span><span class="p">(</span><span class="nx">switchMap</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="k">this</span><span class="p">.</span><span class="nx">getTableData</span><span class="p">([</span><span class="k">this</span><span class="p">.</span><span class="nx">str4</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">str3</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">str2</span><span class="p">])))</span>
+    <span class="p">.</span><span class="nx">subscribe</span><span class="p">(</span><span class="nx">res</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">table2Data</span> <span class="o">=</span> <span class="nx">res</span><span class="p">;</span>
+    <span class="p">});</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">table1$</span>
+    <span class="p">.</span><span class="nx">pipe</span><span class="p">(</span><span class="nx">switchMap</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="k">this</span><span class="p">.</span><span class="nx">getTableData</span><span class="p">([</span><span class="k">this</span><span class="p">.</span><span class="nx">str4</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">str3</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">str2</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">str1</span><span class="p">])))</span>
+    <span class="p">.</span><span class="nx">subscribe</span><span class="p">(</span><span class="nx">res</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">table1Data</span> <span class="o">=</span> <span class="nx">res</span><span class="p">;</span>
+    <span class="p">});</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">leemove</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2020-11-23
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/angular/">Angular</a>
+          <a href="/tags/rxjs/">rxjs</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/rxjs-common-error/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">rxjs常见使用错误</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/rxjs-http-request/">
+            <span class="next-text nav-default">结合rxjs，实现高效http请求</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:hg_limu@163.com" class="iconfont icon-email" title="email"></a>
+  <a href="https://leemove.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2019 - 
+    2020<span class="heart"><i class="iconfont icon-heart"></i></span><span>leemove</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

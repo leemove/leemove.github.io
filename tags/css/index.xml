@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>CSS on 小木屋</title>
+    <link>https://leemove.github.io/tags/css/</link>
+    <description>Recent content in CSS on 小木屋</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Mon, 11 Apr 2016 17:19:43 +0800</lastBuildDate><atom:link href="https://leemove.github.io/tags/css/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>CSS Boxsizing</title>
+      <link>https://leemove.github.io/post/css-boxsizing/</link>
+      <pubDate>Mon, 11 Apr 2016 17:19:43 +0800</pubDate>
+      
+      <guid>https://leemove.github.io/post/css-boxsizing/</guid>
+      <description>&lt;h1 id=&#34;css-boxsizing&#34;&gt;CSS Boxsizing&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;这个属性只有两个值，分别是border-box,content-box;&lt;/p&gt;
+&lt;/blockquote&gt;</description>
+    </item>
+    
+  </channel>
+</rss>
