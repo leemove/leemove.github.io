@@ -35,6 +35,15 @@
     </item>
     
     <item>
+      <title>infer 小记</title>
+      <link>https://leemove.github.io/post/typescript-infer/</link>
+      <pubDate>Mon, 12 Aug 2019 18:49:59 +0800</pubDate>
+      
+      <guid>https://leemove.github.io/post/typescript-infer/</guid>
+      <description>infer关键字可以用在extends后,声明一个类型. 1 2 3 4 5 6 7 8 9 10 11 12 /** 函数返回工具泛型 */ type ReturenType&amp;lt;T&amp;gt; = T extends (...args: any[]) =&amp;gt; infer P ? P : any; type Sub = (a: number, b:</description>
+    </item>
+    
+    <item>
       <title>CSS Boxsizing</title>
       <link>https://leemove.github.io/post/css-boxsizing/</link>
       <pubDate>Mon, 11 Apr 2016 17:19:43 +0800</pubDate>

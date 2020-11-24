@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>生活 on 小木屋</title>
+    <link>https://leemove.github.io/categories/%E7%94%9F%E6%B4%BB/</link>
+    <description>Recent content in 生活 on 小木屋</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Thu, 22 Oct 2020 18:52:25 +0800</lastBuildDate><atom:link href="https://leemove.github.io/categories/%E7%94%9F%E6%B4%BB/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>编程工作带给我的苦与乐</title>
+      <link>https://leemove.github.io/post/coder-fun/</link>
+      <pubDate>Thu, 22 Oct 2020 18:52:25 +0800</pubDate>
+      
+      <guid>https://leemove.github.io/post/coder-fun/</guid>
+      <description>程序带给我很多快乐,但是同时带过我很多痛苦,在工作了这几年之后,逐渐觉得对这个岗位越来越迷茫,参考许多其他资料,我总结了这个职业为我带来的痛</description>
+    </item>
+    
+  </channel>
+</rss>

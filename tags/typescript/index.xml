@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>typescript on 小木屋</title>
+    <link>https://leemove.github.io/tags/typescript/</link>
+    <description>Recent content in typescript on 小木屋</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Mon, 12 Aug 2019 18:49:59 +0800</lastBuildDate><atom:link href="https://leemove.github.io/tags/typescript/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>infer 小记</title>
+      <link>https://leemove.github.io/post/typescript-infer/</link>
+      <pubDate>Mon, 12 Aug 2019 18:49:59 +0800</pubDate>
+      
+      <guid>https://leemove.github.io/post/typescript-infer/</guid>
+      <description>infer关键字可以用在extends后,声明一个类型. 1 2 3 4 5 6 7 8 9 10 11 12 /** 函数返回工具泛型 */ type ReturenType&amp;lt;T&amp;gt; = T extends (...args: any[]) =&amp;gt; infer P ? P : any; type Sub = (a: number, b:</description>
+    </item>
+    
+  </channel>
+</rss>

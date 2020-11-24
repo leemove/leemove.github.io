@@ -72,6 +72,41 @@
   </url>
   
   <url>
+    <loc>https://leemove.github.io/tags/other/</loc>
+    <lastmod>2020-10-22T18:52:25+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://leemove.github.io/categories/%E7%94%9F%E6%B4%BB/</loc>
+    <lastmod>2020-10-22T18:52:25+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://leemove.github.io/post/coder-fun/</loc>
+    <lastmod>2020-10-22T18:52:25+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://leemove.github.io/post/typescript-infer/</loc>
+    <lastmod>2019-08-12T18:49:59+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://leemove.github.io/tags/typescript/</loc>
+    <lastmod>2019-08-12T18:49:59+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>https://leemove.github.io/tags/css/</loc>
     <lastmod>2016-04-11T17:19:43+08:00</lastmod>
     <changefreq>weekly</changefreq>
