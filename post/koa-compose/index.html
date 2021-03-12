@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>依赖注入之供应商 - 小木屋</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="leemove" /><meta name="description" content="Koa, next generation web framework for node.js Koa, 新一代的Nodejs,web框架. koa是由express的作者tj大神,主导开发的另外一款nodejs的web框架,由 Express 原" /><meta name="keywords" content="Angular, Typescript, Vue" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.75.0 with theme even" />
+
+
+<link rel="canonical" href="https://leemove.github.io/post/koa-compose/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.2e81bbed97b8b282c1aeb57488cc71c8d8c8ec559f3931531bd396bf31e0d4dd.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="依赖注入之供应商" />
+<meta property="og:description" content="Koa, next generation web framework for node.js Koa, 新一代的Nodejs,web框架. koa是由express的作者tj大神,主导开发的另外一款nodejs的web框架,由 Express 原" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://leemove.github.io/post/koa-compose/" />
+<meta property="article:published_time" content="2018-03-19T11:04:31+08:00" />
+<meta property="article:modified_time" content="2018-03-19T11:04:31+08:00" />
+<meta itemprop="name" content="依赖注入之供应商">
+<meta itemprop="description" content="Koa, next generation web framework for node.js Koa, 新一代的Nodejs,web框架. koa是由express的作者tj大神,主导开发的另外一款nodejs的web框架,由 Express 原">
+<meta itemprop="datePublished" content="2018-03-19T11:04:31+08:00" />
+<meta itemprop="dateModified" content="2018-03-19T11:04:31+08:00" />
+<meta itemprop="wordCount" content="759">
+
+
+
+<meta itemprop="keywords" content="koa," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="依赖注入之供应商"/>
+<meta name="twitter:description" content="Koa, next generation web framework for node.js Koa, 新一代的Nodejs,web框架. koa是由express的作者tj大神,主导开发的另外一款nodejs的web框架,由 Express 原"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">小木屋</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">小木屋</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">依赖注入之供应商</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2018-03-19 </span>
+        <div class="post-category">
+            <a href="/categories/%E5%89%8D%E7%AB%AF/"> 前端 </a>
+            </div>
+          <span class="more-meta"> 约 759 字 </span>
+          <span class="more-meta"> 预计阅读 2 分钟 </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#洋葱模型">洋葱模型</a></li>
+        <li><a href="#koa-compse详解">koa-compse详解</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <blockquote>
+<p>Koa, next generation web framework for node.js
+Koa, 新一代的Nodejs,web框架.</p>
+</blockquote>
+<p><a href="http://koajs.com/">koa</a>是由<a href="http://www.expressjs.com.cn/">express</a>的作者<code>tj</code>大神,主导开发的另外一款nodejs的web框架,由 Express 原班人马打造的 koa，致力于成为一个更小、更富有表现力、更健壮的 web 开发框架。 使用 koa 编写 web 应用，通过组合不同的 generator，可以免除重复繁琐的回调函数嵌套， 并极大地提升常用错误处理效率。Koa 不在内核中打包任何中间件，它仅仅提供了一套优雅的函数库， 使得编写 Web 应用变得得心应手。</p>
+<!-- more -->
+<h2 id="洋葱模型">洋葱模型</h2>
+<p>koa在解决异步问题的时候,使用了一种新的运行机制,叫做洋葱模型.</p>
+<p><img src="https://camo.githubusercontent.com/d80cf3b511ef4898bcde9a464de491fa15a50d06/68747470733a2f2f7261772e6769746875622e636f6d2f66656e676d6b322f6b6f612d67756964652f6d61737465722f6f6e696f6e2e706e67" alt="洋葱模型"></p>
+<p>他和express和其他常用的框架相比,最大的区别是一个中间件可以执行两次,不再是常规的自上而下去执行.</p>
+<p><img src="https://raw.githubusercontent.com/koajs/koa/a7b6ed0529a58112bac4171e4729b8760a34ab8b/docs/middleware.gif" alt="执行流程"></p>
+<p><a href="https://github.com/koajs/compose">koa-compse</a>是Koa构建中间件流程的关键.</p>
+<h2 id="koa-compse详解">koa-compse详解</h2>
+<p><code>koa-compse</code>是一个十分优雅的包,因为采用了递归,只有56行.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="c1">// middleware 是一个函数的集合,函数也就是我们的各种中间件.
+</span><span class="c1"></span><span class="kd">function</span> <span class="nx">compose</span> <span class="p">(</span><span class="nx">middleware</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// 判断中间件数组是否符合要求
+</span><span class="c1"></span>  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nb">Array</span><span class="p">.</span><span class="nx">isArray</span><span class="p">(</span><span class="nx">middleware</span><span class="p">))</span> <span class="k">throw</span> <span class="k">new</span> <span class="nx">TypeError</span><span class="p">(</span><span class="s1">&#39;Middleware stack must be an array!&#39;</span><span class="p">)</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kr">const</span> <span class="nx">fn</span> <span class="k">of</span> <span class="nx">middleware</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">fn</span> <span class="o">!==</span> <span class="s1">&#39;function&#39;</span><span class="p">)</span> <span class="k">throw</span> <span class="k">new</span> <span class="nx">TypeError</span><span class="p">(</span><span class="s1">&#39;Middleware must be composed of functions!&#39;</span><span class="p">)</span>
+  <span class="p">}</span>
+
+  <span class="cm">/**
+</span><span class="cm">   * @param {Object} context
+</span><span class="cm">   * @return {Promise}
+</span><span class="cm">   * @api public
+</span><span class="cm">   */</span>
+
+  <span class="k">return</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">context</span><span class="p">,</span> <span class="nx">next</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// last called middleware #
+</span><span class="c1"></span>    <span class="kd">let</span> <span class="nx">index</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+    <span class="k">return</span> <span class="nx">dispatch</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    <span class="kd">function</span> <span class="nx">dispatch</span> <span class="p">(</span><span class="nx">i</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span><span class="nx">i</span> <span class="o">&lt;=</span> <span class="nx">index</span><span class="p">)</span> <span class="k">return</span> <span class="nb">Promise</span><span class="p">.</span><span class="nx">reject</span><span class="p">(</span><span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="s1">&#39;next() called multiple times&#39;</span><span class="p">))</span>
+      <span class="nx">index</span> <span class="o">=</span> <span class="nx">i</span>
+      <span class="kd">let</span> <span class="nx">fn</span> <span class="o">=</span> <span class="nx">middleware</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="c1">// 查找当前的中间件
+</span><span class="c1"></span>      <span class="c1">// 如果当前中间件是最后一个 那么设定next为当前中间件
+</span><span class="c1"></span>      <span class="k">if</span> <span class="p">(</span><span class="nx">i</span> <span class="o">===</span> <span class="nx">middleware</span><span class="p">.</span><span class="nx">length</span><span class="p">)</span> <span class="nx">fn</span> <span class="o">=</span> <span class="nx">next</span>
+      <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">fn</span><span class="p">)</span> <span class="k">return</span> <span class="nb">Promise</span><span class="p">.</span><span class="nx">resolve</span><span class="p">()</span>
+      <span class="k">try</span> <span class="p">{</span>
+        <span class="c1">// 执行当前中间件,并且设定next为下一个中间件.
+</span><span class="c1"></span>        <span class="k">return</span> <span class="nb">Promise</span><span class="p">.</span><span class="nx">resolve</span><span class="p">(</span><span class="nx">fn</span><span class="p">(</span><span class="nx">context</span><span class="p">,</span> <span class="kd">function</span> <span class="nx">next</span> <span class="p">()</span> <span class="p">{</span>
+          <span class="k">return</span> <span class="nx">dispatch</span><span class="p">(</span><span class="nx">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="p">}))</span>
+      <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nb">Promise</span><span class="p">.</span><span class="nx">reject</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>其实只做了一个很简单的工作,第一次进入的时候,执行第一个中间件,然后设定第二个中间件为,传入第一个中间件的next函数,然后递归下去,直到最后一个中间件执行结束后,在逐个释放中间件函数,直到最后一个中间件的时候,next为空,下一轮会直接返回<code>Promise.resolve</code>.</p>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">leemove</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2018-03-19
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/koa/">koa</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/angular-provider/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">依赖注入之供应商</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/mongo-update/">
+            <span class="next-text nav-default">Mongo Update</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  <span id="/post/koa-compose/" class="leancloud_visitors" data-flag-title="依赖注入之供应商">
+		<span class="post-meta-item-text">文章阅读量 </span>
+		<span class="leancloud-visitors-count">0</span>
+		<p></p>
+	  </span>
+  <div id="vcomments"></div>
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+  <script type="text/javascript">
+    new Valine({
+        el: '#vcomments' ,
+        appId: 'PWfjRKWRI7XHdT5J1DdlmXgW-gzGzoHsz',
+        appKey: 'QQYUAjv410rSChQylLlbSAgk',
+        notify:  false ,
+        verify:  false ,
+        avatar:'mm',
+        placeholder: '说点什么吧...',
+        visitor:  true 
+    });
+  </script>
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:hg_limu@163.com" class="iconfont icon-email" title="email"></a>
+  <a href="https://leemove.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2019 - 
+    2021<span class="heart"><i class="iconfont icon-heart"></i></span><span>leemove</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+<script id="baidu_analytics">
+  var _hmt = _hmt || [];
+  (function() {
+    if (window.location.hostname === 'localhost') return;
+    var hm = document.createElement("script"); hm.async = true;
+    hm.src = "https://hm.baidu.com/hm.js?f9e166a29c1fb015f42b67da5197bc39";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+  })();
+</script>
+
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>H5 on 小木屋</title>
+    <link>https://leemove.github.io/tags/h5/</link>
+    <description>Recent content in H5 on 小木屋</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Fri, 08 Jul 2016 18:29:10 +0800</lastBuildDate><atom:link href="https://leemove.github.io/tags/h5/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>transform 2D变换</title>
+      <link>https://leemove.github.io/post/transofrm-2d/</link>
+      <pubDate>Fri, 08 Jul 2016 18:29:10 +0800</pubDate>
+      
+      <guid>https://leemove.github.io/post/transofrm-2d/</guid>
+      <description>&lt;p&gt;利用transform可以进行一些2D的动画效果,不需要依靠JS就可以实现。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>perspective的介绍</title>
+      <link>https://leemove.github.io/post/perspective/</link>
+      <pubDate>Sat, 21 May 2016 14:15:39 +0800</pubDate>
+      
+      <guid>https://leemove.github.io/post/perspective/</guid>
+      <description>&lt;h2 id=&#34;perspective属性&#34;&gt;perspective属性&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;这个属性的值会改变一部分变换的效果，单独使用没有明显的效果。&lt;/li&gt;
+&lt;li&gt;这个属性可以理解为 设置属性的元素距离z=0也就是距离屏幕的距离，单位可以是px。正方向是屏幕的内侧，负方向是屏幕的外侧人的方向。&lt;/li&gt;
+&lt;li&gt;对要进行动画元素的父元素使用，如果效果不正常那么在对其父元素的父元素使用。当具有这个属性的值，发生动画效果的时候，有时会产生近大远小的效果。&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
+    
+    <item>
+      <title>H5中新添加的表单元素</title>
+      <link>https://leemove.github.io/post/h5-form-element/</link>
+      <pubDate>Mon, 11 Apr 2016 20:39:39 +0800</pubDate>
+      
+      <guid>https://leemove.github.io/post/h5-form-element/</guid>
+      <description>H5中添加的新表单有有以下几种 1 2 3 4 5 6 7 8 9 10 &amp;lt;form action=&amp;#34;#&amp;#34;&amp;gt; &amp;lt;input type=&amp;#34;color&amp;#34;&amp;gt; &amp;lt;input type=&amp;#34;date&amp;#34;&amp;gt; &amp;lt;label for=&amp;#34;&amp;#34;&amp;gt;请输入邮箱:&amp;lt;/label&amp;gt;</description>
+    </item>
+    
+    <item>
+      <title>box-sizing属性</title>
+      <link>https://leemove.github.io/post/box-sizing/</link>
+      <pubDate>Tue, 05 Apr 2016 10:39:39 +0800</pubDate>
+      
+      <guid>https://leemove.github.io/post/box-sizing/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;这个属性只有两个值，分别是border-box,content-box;&lt;/p&gt;
+&lt;/blockquote&gt;</description>
+    </item>
+    
+    <item>
+      <title>HTML5的语义标签</title>
+      <link>https://leemove.github.io/post/h5-language-tag/</link>
+      <pubDate>Wed, 23 Mar 2016 21:03:14 +0800</pubDate>
+      
+      <guid>https://leemove.github.io/post/h5-language-tag/</guid>
+      <description>&lt;h2 id=&#34;语义标签是指没有特定的浏览器默认行为的标签-可以便于页面的维护增加页面的可阅读性同时也方便爬虫访问网页对seo起到优化的作用&#34;&gt;语义标签是指没有特定的浏览器默认行为的标签 ,可以便于页面的维护，增加页面的可阅读性。同时也方便爬虫访问网页，对SEO起到优化的作用。&lt;/h2&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

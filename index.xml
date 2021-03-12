@@ -53,15 +53,239 @@
     </item>
     
     <item>
+      <title>依赖注入之供应商</title>
+      <link>https://leemove.github.io/post/angular-provider/</link>
+      <pubDate>Tue, 21 May 2019 19:04:31 +0800</pubDate>
+      
+      <guid>https://leemove.github.io/post/angular-provider/</guid>
+      <description>在angular中,如果我们要使用依赖注入,那我们必须先注册一个Provider供应商,本身有以下几种: 原地址 TypeProvider ClassProvider ValueProvider ExistingProvider FactoryProvider 他负责描述和Toke</description>
+    </item>
+    
+    <item>
+      <title>依赖注入之供应商</title>
+      <link>https://leemove.github.io/post/koa-compose/</link>
+      <pubDate>Mon, 19 Mar 2018 11:04:31 +0800</pubDate>
+      
+      <guid>https://leemove.github.io/post/koa-compose/</guid>
+      <description>Koa, next generation web framework for node.js Koa, 新一代的Nodejs,web框架. koa是由express的作者tj大神,主导开发的另外一款nodejs的web框架,由 Express 原</description>
+    </item>
+    
+    <item>
+      <title>Mongo Update</title>
+      <link>https://leemove.github.io/post/mongo-update/</link>
+      <pubDate>Sun, 21 Jan 2018 15:37:24 +0800</pubDate>
+      
+      <guid>https://leemove.github.io/post/mongo-update/</guid>
+      <description>当一个文档只有一部分需要更新的时候,可以使用原子性修改器,修改器是一个特殊的键,可以用来指定一些复杂的操作. 增加和减少$inc 很多场景下,我</description>
+    </item>
+    
+    <item>
+      <title>从前端角度探讨下MVVM MVC</title>
+      <link>https://leemove.github.io/post/mvvmvsmvc/</link>
+      <pubDate>Mon, 04 Sep 2017 15:40:51 +0800</pubDate>
+      
+      <guid>https://leemove.github.io/post/mvvmvsmvc/</guid>
+      <description>首先声明一点,我不敢说让你花几分钟就可以完全理解这些概念.这篇文章是我个人的理解,并不一定完全正确!!!欢迎指正和讨论. 最近前端工程化越来越</description>
+    </item>
+    
+    <item>
+      <title>H5进度条</title>
+      <link>https://leemove.github.io/post/h5-progress/</link>
+      <pubDate>Wed, 15 Mar 2017 17:18:34 +0800</pubDate>
+      
+      <guid>https://leemove.github.io/post/h5-progress/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>C3背景颜色的渐变</title>
+      <link>https://leemove.github.io/post/color-transform/</link>
+      <pubDate>Sun, 12 Mar 2017 15:38:34 +0800</pubDate>
+      
+      <guid>https://leemove.github.io/post/color-transform/</guid>
+      <description>&lt;p&gt;颜色的渐变是指从一个颜色逐渐变成另外一个颜色，具体体验在RGB值的改变，C3中不需要借助图片处理，可以直接生成许多颜色的渐变效果。节省了资源的占用，可以加快网页的加载速度。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>小盒子触摸特效</title>
+      <link>https://leemove.github.io/post/box-transform/</link>
+      <pubDate>Tue, 12 Jul 2016 15:36:33 +0800</pubDate>
+      
+      <guid>https://leemove.github.io/post/box-transform/</guid>
+      <description>&lt;h1 id=&#34;小盒子触摸特效&#34;&gt;小盒子触摸特效&lt;/h1&gt;
+&lt;p&gt;在许多网页中都有的小盒子特效，鼠标进入小盒子后，小盒子内的图片和文字产生一种类似滑动的特效&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>transform 2D变换</title>
+      <link>https://leemove.github.io/post/transofrm-2d/</link>
+      <pubDate>Fri, 08 Jul 2016 18:29:10 +0800</pubDate>
+      
+      <guid>https://leemove.github.io/post/transofrm-2d/</guid>
+      <description>&lt;p&gt;利用transform可以进行一些2D的动画效果,不需要依靠JS就可以实现。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>C3阴影效果</title>
+      <link>https://leemove.github.io/post/c3-shadow/</link>
+      <pubDate>Tue, 07 Jun 2016 12:19:51 +0800</pubDate>
+      
+      <guid>https://leemove.github.io/post/c3-shadow/</guid>
+      <description>文字阴影 text-shadow text-shadow的参数 第一个参数是水平x轴的阴影方向 长度 第二个参数是垂直方向y轴的阴影方向和长度 第三个参数是模糊值 设置阴影的</description>
+    </item>
+    
+    <item>
+      <title>JQuery源码阅读之整体架构</title>
+      <link>https://leemove.github.io/post/jquery-read/</link>
+      <pubDate>Fri, 03 Jun 2016 15:39:54 +0800</pubDate>
+      
+      <guid>https://leemove.github.io/post/jquery-read/</guid>
+      <description>&lt;p&gt;JQuery作为前端的基本功，每个前端都必然使用过，作为一个前端的初学者很好奇内部的源码。
+今天开始将逐渐阅读一些JQuery源码，来解析他的设计思路，和一些小技巧，加深面向对象技能。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>perspective的介绍</title>
+      <link>https://leemove.github.io/post/perspective/</link>
+      <pubDate>Sat, 21 May 2016 14:15:39 +0800</pubDate>
+      
+      <guid>https://leemove.github.io/post/perspective/</guid>
+      <description>&lt;h2 id=&#34;perspective属性&#34;&gt;perspective属性&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;这个属性的值会改变一部分变换的效果，单独使用没有明显的效果。&lt;/li&gt;
+&lt;li&gt;这个属性可以理解为 设置属性的元素距离z=0也就是距离屏幕的距离，单位可以是px。正方向是屏幕的内侧，负方向是屏幕的外侧人的方向。&lt;/li&gt;
+&lt;li&gt;对要进行动画元素的父元素使用，如果效果不正常那么在对其父元素的父元素使用。当具有这个属性的值，发生动画效果的时候，有时会产生近大远小的效果。&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
+    
+    <item>
+      <title>H5对DOM的扩展</title>
+      <link>https://leemove.github.io/post/h5-dom-extend/</link>
+      <pubDate>Wed, 11 May 2016 16:36:33 +0800</pubDate>
+      
+      <guid>https://leemove.github.io/post/h5-dom-extend/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>transition进阶介绍</title>
+      <link>https://leemove.github.io/post/transition/</link>
+      <pubDate>Sat, 23 Apr 2016 19:13:51 +0800</pubDate>
+      
+      <guid>https://leemove.github.io/post/transition/</guid>
+      <description>&lt;h1 id=&#34;transition进阶介绍&#34;&gt;transition进阶介绍&lt;/h1&gt;
+&lt;p&gt;过渡就是当当前元素的属性发生变化时，不是立即切换，而是逐渐的发生变化，会产生动画效果。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>xxx-of-type(n)选择器</title>
+      <link>https://leemove.github.io/post/nth-type-of/</link>
+      <pubDate>Thu, 21 Apr 2016 20:16:33 +0800</pubDate>
+      
+      <guid>https://leemove.github.io/post/nth-type-of/</guid>
+      <description>E:first-of-type 选择兄弟元素中的第一个E类型的元素 li:first-of-type就是选择兄弟元素中第一个li元素 E:last-of-type 就是选择兄弟元素中最后一个E类型的元素</description>
+    </item>
+    
+    <item>
+      <title>兄弟选择器</title>
+      <link>https://leemove.github.io/post/brother-selector/</link>
+      <pubDate>Mon, 18 Apr 2016 19:13:14 +0800</pubDate>
+      
+      <guid>https://leemove.github.io/post/brother-selector/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>H5中新添加的表单元素</title>
+      <link>https://leemove.github.io/post/h5-form-element/</link>
+      <pubDate>Mon, 11 Apr 2016 20:39:39 +0800</pubDate>
+      
+      <guid>https://leemove.github.io/post/h5-form-element/</guid>
+      <description>H5中添加的新表单有有以下几种 1 2 3 4 5 6 7 8 9 10 &amp;lt;form action=&amp;#34;#&amp;#34;&amp;gt; &amp;lt;input type=&amp;#34;color&amp;#34;&amp;gt; &amp;lt;input type=&amp;#34;date&amp;#34;&amp;gt; &amp;lt;label for=&amp;#34;&amp;#34;&amp;gt;请输入邮箱:&amp;lt;/label&amp;gt;</description>
+    </item>
+    
+    <item>
       <title>CSS Boxsizing</title>
       <link>https://leemove.github.io/post/css-boxsizing/</link>
       <pubDate>Mon, 11 Apr 2016 17:19:43 +0800</pubDate>
       
       <guid>https://leemove.github.io/post/css-boxsizing/</guid>
-      <description>&lt;h1 id=&#34;css-boxsizing&#34;&gt;CSS Boxsizing&lt;/h1&gt;
-&lt;blockquote&gt;
+      <description>&lt;blockquote&gt;
 &lt;p&gt;这个属性只有两个值，分别是border-box,content-box;&lt;/p&gt;
 &lt;/blockquote&gt;</description>
+    </item>
+    
+    <item>
+      <title>box-sizing属性</title>
+      <link>https://leemove.github.io/post/box-sizing/</link>
+      <pubDate>Tue, 05 Apr 2016 10:39:39 +0800</pubDate>
+      
+      <guid>https://leemove.github.io/post/box-sizing/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;这个属性只有两个值，分别是border-box,content-box;&lt;/p&gt;
+&lt;/blockquote&gt;</description>
+    </item>
+    
+    <item>
+      <title>CSS3新增的常用伪类选择器</title>
+      <link>https://leemove.github.io/post/css-fack-selectors/</link>
+      <pubDate>Fri, 01 Apr 2016 20:09:31 +0800</pubDate>
+      
+      <guid>https://leemove.github.io/post/css-fack-selectors/</guid>
+      <description>&lt;h1 id=&#34;heading&#34;&gt;&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;CSS3增加了许多新的伪类选择器 但部分浏览器兼容较差&lt;/p&gt;
+&lt;/blockquote&gt;</description>
+    </item>
+    
+    <item>
+      <title>伪对象选择器</title>
+      <link>https://leemove.github.io/post/fackselector/</link>
+      <pubDate>Fri, 01 Apr 2016 17:04:31 +0800</pubDate>
+      
+      <guid>https://leemove.github.io/post/fackselector/</guid>
+      <description>&lt;h1 id=&#34;伪对象选择器&#34;&gt;伪对象选择器&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;和伪类选择器类似&lt;/p&gt;
+&lt;/blockquote&gt;</description>
+    </item>
+    
+    <item>
+      <title>HTML5的语义标签</title>
+      <link>https://leemove.github.io/post/h5-language-tag/</link>
+      <pubDate>Wed, 23 Mar 2016 21:03:14 +0800</pubDate>
+      
+      <guid>https://leemove.github.io/post/h5-language-tag/</guid>
+      <description>&lt;h2 id=&#34;语义标签是指没有特定的浏览器默认行为的标签-可以便于页面的维护增加页面的可阅读性同时也方便爬虫访问网页对seo起到优化的作用&#34;&gt;语义标签是指没有特定的浏览器默认行为的标签 ,可以便于页面的维护，增加页面的可阅读性。同时也方便爬虫访问网页，对SEO起到优化的作用。&lt;/h2&gt;</description>
+    </item>
+    
+    <item>
+      <title>C3背景新玩法</title>
+      <link>https://leemove.github.io/post/background/</link>
+      <pubDate>Fri, 11 Mar 2016 20:39:39 +0800</pubDate>
+      
+      <guid>https://leemove.github.io/post/background/</guid>
+      <description>&lt;h1 id=&#34;c3背景新玩法&#34;&gt;C3背景新玩法&lt;/h1&gt;
+&lt;hr&gt;
+&lt;p&gt;CCS3背景相添加了许多新的特性，可以配合过渡属性不依靠JS也可以完成许多动画效果，十分的便捷。本文章介绍的是，一些C3中新添加的常用的基础的背景属性。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>ajax入门</title>
+      <link>https://leemove.github.io/post/ajax/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://leemove.github.io/post/ajax/</guid>
+      <description>&lt;p&gt;AJAX即“Asynchronous JavaScript and XML”（异步的JavaScript与XML技术），指的是一套综合了多项技术的浏览器端网页开发技术。还会介绍Jquery封装的ajax和跨域问题。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>HTML5的兼容性</title>
+      <link>https://leemove.github.io/post/old-ie/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://leemove.github.io/post/old-ie/</guid>
+      <description>&lt;h1 id=&#34;老版本ie和h5的兼容问题&#34;&gt;老版本IE和H5的兼容问题&lt;/h1&gt;</description>
     </item>
     
   </channel>

@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>从前端角度探讨下MVVM MVC - 小木屋</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="leemove" /><meta name="description" content="首先声明一点,我不敢说让你花几分钟就可以完全理解这些概念.这篇文章是我个人的理解,并不一定完全正确!!!欢迎指正和讨论. 最近前端工程化越来越" /><meta name="keywords" content="Angular, Typescript, Vue" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.75.0 with theme even" />
+
+
+<link rel="canonical" href="https://leemove.github.io/post/mvvmvsmvc/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.2e81bbed97b8b282c1aeb57488cc71c8d8c8ec559f3931531bd396bf31e0d4dd.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="从前端角度探讨下MVVM MVC" />
+<meta property="og:description" content="首先声明一点,我不敢说让你花几分钟就可以完全理解这些概念.这篇文章是我个人的理解,并不一定完全正确!!!欢迎指正和讨论. 最近前端工程化越来越" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://leemove.github.io/post/mvvmvsmvc/" />
+<meta property="article:published_time" content="2017-09-04T15:40:51+08:00" />
+<meta property="article:modified_time" content="2017-09-04T15:40:51+08:00" />
+<meta itemprop="name" content="从前端角度探讨下MVVM MVC">
+<meta itemprop="description" content="首先声明一点,我不敢说让你花几分钟就可以完全理解这些概念.这篇文章是我个人的理解,并不一定完全正确!!!欢迎指正和讨论. 最近前端工程化越来越">
+<meta itemprop="datePublished" content="2017-09-04T15:40:51+08:00" />
+<meta itemprop="dateModified" content="2017-09-04T15:40:51+08:00" />
+<meta itemprop="wordCount" content="1098">
+
+
+
+<meta itemprop="keywords" content="MVVM,MVC," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="从前端角度探讨下MVVM MVC"/>
+<meta name="twitter:description" content="首先声明一点,我不敢说让你花几分钟就可以完全理解这些概念.这篇文章是我个人的理解,并不一定完全正确!!!欢迎指正和讨论. 最近前端工程化越来越"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">小木屋</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">小木屋</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">从前端角度探讨下MVVM MVC</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2017-09-04 </span>
+        <div class="post-category">
+            <a href="/categories/%E5%89%8D%E7%AB%AF/"> 前端 </a>
+            </div>
+          <span class="more-meta"> 约 1098 字 </span>
+          <span class="more-meta"> 预计阅读 3 分钟 </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#什么是m--v--c">什么是M , V , C</a>
+          <ul>
+            <li><a href="#model">Model</a></li>
+            <li><a href="#view">View</a></li>
+            <li><a href="#controller">Controller</a></li>
+            <li><a href="#mvc-组合之后">MVC 组合之后</a></li>
+          </ul>
+        </li>
+        <li><a href="#mvvm">MVVM</a></li>
+        <li><a href="#我的理解">我的理解</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p>首先声明一点,我不敢说让你花几分钟就可以完全理解这些概念.这篇文章是我个人的理解,并不一定<code>完全正确</code>!!!欢迎指正和讨论.</p>
+<p>最近前端工程化越来越普遍完善了,面试的时候也总会被问到<code>MVC</code>,<code>MVVM</code>这类的架构名词,第一次听肯定让人很费劲,但是千万不要想得太难,其实非常非常的简单好理解,这篇文章主要会结合前端的业务场景来解释解释这些概念.</p>
+<!-- more -->
+<h2 id="什么是m--v--c">什么是M , V , C</h2>
+<h3 id="model">Model</h3>
+<p>M: Model 模型</p>
+<p>也就是一个抽象对象的模型,作为一个小前端,你是不是也写过<code>express</code>呢?在express中一个最普通的模型可以就是这样的.很简单.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="kr">const</span> <span class="nx">Person</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="nx">name</span><span class="o">:</span> <span class="nb">String</span><span class="p">,</span>
+  <span class="nx">age</span><span class="o">:</span> <span class="nb">Number</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>这就是一个人类的模型,有两个属性,一个是名字必须是<code>字符串</code>,另外一个就是年龄必须是<code>数字</code>.如果实例出一个对象的话可能就是<code>小明</code>,<code>24岁</code>这种感觉.<code>Model</code>层只关心数据最基础的增删改查.</p>
+<h3 id="view">View</h3>
+<p>V: View 视图</p>
+<p>也就是我们所看到的.我们存在model的数据当然要展示出来了,展示在网页,展示在<code>html</code>里面.<code>view</code>就可以当成一个静态页面.<code>View</code>只关心数据的显示.</p>
+<h3 id="controller">Controller</h3>
+<p>C: Controller 控制器</p>
+<p>我们已经有了<code>模型Model</code>要显示在<code>View</code>上,如果像上例一样的简单数据,可以直接拿去显示,但是数据有时候不是单纯的为了显示,会有增删改的需求.这时候我们的<code>Controller控制器</code>就出现了.可以控制数据的家伙就是他.</p>
+<h3 id="mvc-组合之后">MVC 组合之后</h3>
+<p><img src="http://image.beekka.com/blog/2015/bg2015020105.png" alt="MVC"></p>
+<p>图片来自<a href="http://www.ruanyifeng.com/blog/2015/02/mvcmvp_mvvm.html">阮一峰</a>大大的博客.</p>
+<p>所以一次完整的交互结合实际大概是这样的.</p>
+<p><code>View</code>层网页显示了来自<code>Model</code>的数据,用户说我要改这条数据,点击了一下网页<code>View</code>,<code>Controll</code>收到来自<code>View</code>的反馈,赶紧去修改数据,也就是找<code>Model</code>.<code>Model</code>变了之后,用户再次获取数据的时候,数据已经更新过了!这就是传统的<code>MVC</code>.</p>
+<h2 id="mvvm">MVVM</h2>
+<p>一眼直接看上去,你大概可以看到,少了个<code>C</code>多了个<code>V</code>和<code>M</code>.难道有两个<code>ViewModel</code>其实不是这样的.现在<code>Vue</code>和<code>Angular</code>这两款主流框架都包含了一个很nb的功能,叫做双向绑定.应运而生的类似概念就是<code>ViewModel</code>也就是<code>VM</code>.<code>VM</code>相比较<code>C</code>有一点很方便就是<code>&quot;双向流&quot;</code>.</p>
+<p><img src="http://image.beekka.com/blog/2015/bg2015020110.png" alt="MVVM"></p>
+<p>双向的好处就是<code>ViewModel</code>不在只能操作<code>Model</code>了,可以直接去操作<code>View</code>更改视图.同时可以在获取数据之后进行加工,处理再显示到<code>View</code>上.减少了许多不必要的操作.</p>
+<h2 id="我的理解">我的理解</h2>
+<p>这些概念其实并不复杂,但是还没有确定准确的标准,所以会导致很混乱.阮一峰老师的和MSDN之间就有很大的差别.所以这个东西主要还是理解怎么去用,怎么去思考,并没有一个太标准的答案,就像<code>angular</code>称自己为<code>MVW</code>,<code>W</code>:<code>Whatever</code>.你懂得怎么把将项目按照逻辑区分层次,知道每个层级该做什么,不能做什么就足够了.<del>开心就好.</del></p>
+<p><a href="https://tuchuang001.com/image/4wEKx"><img src="https://tuchuang001.com/images/2017/09/04/mvw.md.png" alt="mvw.md.png"></a></p>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">leemove</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2017-09-04
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/mvvm/">MVVM</a>
+          <a href="/tags/mvc/">MVC</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/mongo-update/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Mongo Update</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/h5-progress/">
+            <span class="next-text nav-default">H5进度条</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  <span id="/post/mvvmvsmvc/" class="leancloud_visitors" data-flag-title="从前端角度探讨下MVVM MVC">
+		<span class="post-meta-item-text">文章阅读量 </span>
+		<span class="leancloud-visitors-count">0</span>
+		<p></p>
+	  </span>
+  <div id="vcomments"></div>
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+  <script type="text/javascript">
+    new Valine({
+        el: '#vcomments' ,
+        appId: 'PWfjRKWRI7XHdT5J1DdlmXgW-gzGzoHsz',
+        appKey: 'QQYUAjv410rSChQylLlbSAgk',
+        notify:  false ,
+        verify:  false ,
+        avatar:'mm',
+        placeholder: '说点什么吧...',
+        visitor:  true 
+    });
+  </script>
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:hg_limu@163.com" class="iconfont icon-email" title="email"></a>
+  <a href="https://leemove.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2019 - 
+    2021<span class="heart"><i class="iconfont icon-heart"></i></span><span>leemove</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+<script id="baidu_analytics">
+  var _hmt = _hmt || [];
+  (function() {
+    if (window.location.hostname === 'localhost') return;
+    var hm = document.createElement("script"); hm.async = true;
+    hm.src = "https://hm.baidu.com/hm.js?f9e166a29c1fb015f42b67da5197bc39";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+  })();
+</script>
+
+
+
+
+
+
+</body>
+</html>

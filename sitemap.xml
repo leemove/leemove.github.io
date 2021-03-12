@@ -107,8 +107,176 @@
   </url>
   
   <url>
+    <loc>https://leemove.github.io/post/angular-provider/</loc>
+    <lastmod>2019-05-21T19:04:31+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://leemove.github.io/tags/koa/</loc>
+    <lastmod>2018-03-19T11:04:31+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://leemove.github.io/post/koa-compose/</loc>
+    <lastmod>2018-03-19T11:04:31+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://leemove.github.io/post/mongo-update/</loc>
+    <lastmod>2018-01-21T15:37:24+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://leemove.github.io/tags/mongodb/</loc>
+    <lastmod>2018-01-21T15:37:24+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://leemove.github.io/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/</loc>
+    <lastmod>2018-01-21T15:37:24+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://leemove.github.io/tags/mvc/</loc>
+    <lastmod>2017-09-04T15:40:51+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://leemove.github.io/tags/mvvm/</loc>
+    <lastmod>2017-09-04T15:40:51+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://leemove.github.io/post/mvvmvsmvc/</loc>
+    <lastmod>2017-09-04T15:40:51+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>https://leemove.github.io/tags/css/</loc>
-    <lastmod>2016-04-11T17:19:43+08:00</lastmod>
+    <lastmod>2017-03-15T17:18:34+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://leemove.github.io/post/h5-progress/</loc>
+    <lastmod>2017-03-15T17:18:34+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://leemove.github.io/post/color-transform/</loc>
+    <lastmod>2017-03-12T15:38:34+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://leemove.github.io/post/box-transform/</loc>
+    <lastmod>2016-07-12T15:36:33+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://leemove.github.io/tags/h5/</loc>
+    <lastmod>2016-07-08T18:29:10+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://leemove.github.io/post/transofrm-2d/</loc>
+    <lastmod>2016-07-08T18:29:10+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://leemove.github.io/post/c3-shadow/</loc>
+    <lastmod>2016-06-07T12:19:51+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://leemove.github.io/tags/jquery/</loc>
+    <lastmod>2016-06-03T15:39:54+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://leemove.github.io/post/jquery-read/</loc>
+    <lastmod>2016-06-03T15:39:54+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://leemove.github.io/tags/js/</loc>
+    <lastmod>2016-06-03T15:39:54+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://leemove.github.io/post/perspective/</loc>
+    <lastmod>2016-05-21T14:15:39+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://leemove.github.io/post/h5-dom-extend/</loc>
+    <lastmod>2016-05-11T16:36:33+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://leemove.github.io/post/transition/</loc>
+    <lastmod>2016-04-23T19:13:51+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://leemove.github.io/post/nth-type-of/</loc>
+    <lastmod>2016-04-21T20:16:33+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://leemove.github.io/post/brother-selector/</loc>
+    <lastmod>2016-04-18T19:13:14+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://leemove.github.io/post/h5-form-element/</loc>
+    <lastmod>2016-04-11T20:39:39+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -116,6 +284,53 @@
   <url>
     <loc>https://leemove.github.io/post/css-boxsizing/</loc>
     <lastmod>2016-04-11T17:19:43+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://leemove.github.io/post/box-sizing/</loc>
+    <lastmod>2016-04-05T10:39:39+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://leemove.github.io/post/css-fack-selectors/</loc>
+    <lastmod>2016-04-01T20:09:31+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://leemove.github.io/post/fackselector/</loc>
+    <lastmod>2016-04-01T17:04:31+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://leemove.github.io/post/h5-language-tag/</loc>
+    <lastmod>2016-03-23T21:03:14+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://leemove.github.io/post/background/</loc>
+    <lastmod>2016-03-11T20:39:39+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://leemove.github.io/post/ajax/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://leemove.github.io/post/old-ie/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>

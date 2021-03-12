@@ -34,5 +34,14 @@
       <description>结合rxjs，实现高效http请求 在项目中经常会碰到这样的需求，用户在输入框输入数据，需要实时调用后台api,根据结果对输入进行重复校验，或</description>
     </item>
     
+    <item>
+      <title>依赖注入之供应商</title>
+      <link>https://leemove.github.io/post/angular-provider/</link>
+      <pubDate>Tue, 21 May 2019 19:04:31 +0800</pubDate>
+      
+      <guid>https://leemove.github.io/post/angular-provider/</guid>
+      <description>在angular中,如果我们要使用依赖注入,那我们必须先注册一个Provider供应商,本身有以下几种: 原地址 TypeProvider ClassProvider ValueProvider ExistingProvider FactoryProvider 他负责描述和Toke</description>
+    </item>
+    
   </channel>
 </rss>

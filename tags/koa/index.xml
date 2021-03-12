@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>koa on 小木屋</title>
+    <link>https://leemove.github.io/tags/koa/</link>
+    <description>Recent content in koa on 小木屋</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Mon, 19 Mar 2018 11:04:31 +0800</lastBuildDate><atom:link href="https://leemove.github.io/tags/koa/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>依赖注入之供应商</title>
+      <link>https://leemove.github.io/post/koa-compose/</link>
+      <pubDate>Mon, 19 Mar 2018 11:04:31 +0800</pubDate>
+      
+      <guid>https://leemove.github.io/post/koa-compose/</guid>
+      <description>Koa, next generation web framework for node.js Koa, 新一代的Nodejs,web框架. koa是由express的作者tj大神,主导开发的另外一款nodejs的web框架,由 Express 原</description>
+    </item>
+    
+  </channel>
+</rss>

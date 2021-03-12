@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>C3背景颜色的渐变 - 小木屋</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="leemove" /><meta name="description" content="C3背景颜色的渐变 颜色的渐变是指从一个颜色逐渐变成另外一个颜色，具体体验在RGB值的改变，C3中不需要借助图片处理，可以直接生成许多颜色的渐变效果。节省了资源的占用，可以加快网页的加载速度。
+" /><meta name="keywords" content="Angular, Typescript, Vue" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.75.0 with theme even" />
+
+
+<link rel="canonical" href="https://leemove.github.io/post/c3%E9%A2%9C%E8%89%B2%E7%9A%84%E6%B8%90%E5%8F%98/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.2e81bbed97b8b282c1aeb57488cc71c8d8c8ec559f3931531bd396bf31e0d4dd.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="C3背景颜色的渐变" />
+<meta property="og:description" content="C3背景颜色的渐变
+颜色的渐变是指从一个颜色逐渐变成另外一个颜色，具体体验在RGB值的改变，C3中不需要借助图片处理，可以直接生成许多颜色的渐变效果。节省了资源的占用，可以加快网页的加载速度。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://leemove.github.io/post/c3%E9%A2%9C%E8%89%B2%E7%9A%84%E6%B8%90%E5%8F%98/" />
+
+<meta itemprop="name" content="C3背景颜色的渐变">
+<meta itemprop="description" content="C3背景颜色的渐变
+颜色的渐变是指从一个颜色逐渐变成另外一个颜色，具体体验在RGB值的改变，C3中不需要借助图片处理，可以直接生成许多颜色的渐变效果。节省了资源的占用，可以加快网页的加载速度。">
+
+<meta itemprop="wordCount" content="1102">
+
+
+
+<meta itemprop="keywords" content="" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="C3背景颜色的渐变"/>
+<meta name="twitter:description" content="C3背景颜色的渐变
+颜色的渐变是指从一个颜色逐渐变成另外一个颜色，具体体验在RGB值的改变，C3中不需要借助图片处理，可以直接生成许多颜色的渐变效果。节省了资源的占用，可以加快网页的加载速度。"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">小木屋</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">小木屋</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">C3背景颜色的渐变</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 0001-01-01 </span>
+        
+          <span class="more-meta"> 约 1102 字 </span>
+          <span class="more-meta"> 预计阅读 3 分钟 </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#c3背景颜色的渐变">C3背景颜色的渐变</a>
+      <ul>
+        <li><a href="#线性渐变">线性渐变</a>
+          <ul>
+            <li><a href="#线性渐变的语法">线性渐变的语法</a></li>
+            <li><a href="#最简单的渐变代码实现">最简单的渐变代码实现</a></li>
+          </ul>
+        </li>
+        <li><a href="#渐变过程中颜色的范围">渐变过程中颜色的范围</a>
+          <ul>
+            <li><a href="#百分比的详解">百分比的详解</a></li>
+            <li><a href="#代码示例">代码示例</a></li>
+          </ul>
+        </li>
+        <li><a href="#径向渐变">径向渐变</a>
+          <ul>
+            <li><a href="#径向渐变的语法">径向渐变的语法</a></li>
+            <li><a href="#小太阳示例">小太阳示例</a></li>
+            <li><a href="#关于小案例中body的注意">关于小案例中body的注意</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <h1 id="c3背景颜色的渐变">C3背景颜色的渐变</h1>
+<p>颜色的渐变是指从一个颜色逐渐变成另外一个颜色，具体体验在RGB值的改变，C3中不需要借助图片处理，可以直接生成许多颜色的渐变效果。节省了资源的占用，可以加快网页的加载速度。</p>
+<h2 id="线性渐变">线性渐变</h2>
+<blockquote>
+<p>线性渐变是沿着一个方向颜色产逐渐的变化</p>
+</blockquote>
+<h3 id="线性渐变的语法">线性渐变的语法</h3>
+<p><code>background:linear-gradient(to 目标方向 ,颜色,渐变到的颜色)</code>
+线性渐变产生的颜色差在CSS中可以理解为背景图片，而不是背景颜色，所以必须用background-image或者background来进行设置。</p>
+<ul>
+<li>目标方向可以是以下几种
+<ul>
+<li>top 从下到上</li>
+<li>bottom 从上到下</li>
+<li>left  从右到左</li>
+<li>right 从左到右</li>
+<li>ndeg  n可以替换成度数 完全可以360度自定义方向</li>
+</ul>
+</li>
+<li>颜色的渐变可以设置多种颜色会一个向下一个颜色渐变</li>
+</ul>
+<h3 id="最简单的渐变代码实现">最简单的渐变代码实现</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-html" data-lang="html"><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="p">&lt;</span><span class="nt">html</span> <span class="na">lang</span><span class="o">=</span><span class="s">&#34;en&#34;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">charset</span><span class="o">=</span><span class="s">&#34;UTF-8&#34;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>$想不想知道后面写的是什么$<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">style</span><span class="p">&gt;</span>
+        <span class="nt">div</span><span class="p">{</span>
+            <span class="k">width</span><span class="p">:</span> <span class="mi">800</span><span class="kt">px</span><span class="p">;</span>
+            <span class="k">height</span><span class="p">:</span> <span class="mi">300</span><span class="kt">px</span><span class="p">;</span>
+            <span class="k">background</span><span class="p">:</span> <span class="nb">linear-gradient</span><span class="p">(</span><span class="kc">to</span> <span class="kc">right</span><span class="p">,</span><span class="kc">yellow</span><span class="p">,</span><span class="kc">orange</span><span class="p">,</span><span class="kc">red</span><span class="p">);</span>
+        <span class="p">}</span>  
+    <span class="p">&lt;/</span><span class="nt">style</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>运行结果如下:
+<img src="http://ok0w43sns.bkt.clouddn.com/jianbian1.png" alt="渐变结果"></p>
+<h2 id="渐变过程中颜色的范围">渐变过程中颜色的范围</h2>
+<p><code>background:linear-gradient(to(目标方向),颜色 百分比,渐变到的颜色 百分比，渐变到的颜色 百分比)</code></p>
+<h3 id="百分比的详解">百分比的详解</h3>
+<ul>
+<li>百分比是指颜色渐变方向起始的百分比，颜色渐变方向末尾的百分比，带有百分比会阻止颜色的渐变，改变成到百分比立即切换，如果某个颜色没有写开始或者末尾百分比，颜色会正常渐变
+<ul>
+<li>由于第一个颜色起始肯定是0 所以只需要写末尾的百分比</li>
+<li>由于最后一个颜色末尾肯定是100% 只需要写起始的百分比</li>
+</ul>
+</li>
+</ul>
+<h3 id="代码示例">代码示例</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-html" data-lang="html"><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="p">&lt;</span><span class="nt">html</span> <span class="na">lang</span><span class="o">=</span><span class="s">&#34;en&#34;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">charset</span><span class="o">=</span><span class="s">&#34;UTF-8&#34;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>$想不想知道后面写的是什么$<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">style</span><span class="p">&gt;</span>
+        <span class="nt">div</span><span class="p">{</span>
+            <span class="k">width</span><span class="p">:</span> <span class="mi">800</span><span class="kt">px</span><span class="p">;</span>
+            <span class="k">height</span><span class="p">:</span> <span class="mi">300</span><span class="kt">px</span><span class="p">;</span>
+            <span class="k">background</span><span class="p">:</span> <span class="nb">linear-gradient</span><span class="p">(</span><span class="kc">to</span> <span class="kc">right</span><span class="p">,</span><span class="kc">yellow</span> <span class="mi">30</span><span class="kt">%</span><span class="p">,</span><span class="kc">orange</span> <span class="mi">30</span><span class="kt">%</span><span class="p">,</span><span class="kc">orange</span> <span class="mi">70</span><span class="kt">%</span><span class="p">,</span><span class="kc">red</span> <span class="mi">70</span><span class="kt">%</span><span class="p">);</span>
+        <span class="p">}</span>  
+    <span class="p">&lt;/</span><span class="nt">style</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>运行后结果如下：
+<img src="http://ok0w43sns.bkt.clouddn.com/jianbian2.png" alt="渐变结果图2"></p>
+<h2 id="径向渐变">径向渐变</h2>
+<blockquote>
+<p>色彩渐变按照圆的半径扩散</p>
+</blockquote>
+<h3 id="径向渐变的语法">径向渐变的语法</h3>
+<p><code>background: radial-gradient( mpx npx at 位置，颜色 百分比，颜色 百分比)</code>
+和线性渐变类似，区别在于m,n分别代表半径，当m=n或者只写m时，渐变是呈现圆形，否则呈现椭圆。</p>
+<ul>
+<li>位置处可以填写以下几种位置
+<ul>
+<li>top       可以和除了bottom的搭配</li>
+<li>bottom    可以和除了top的搭配</li>
+<li>left      可以和除了right的搭配</li>
+<li>right     可以和除了Left 的搭配</li>
+<li>center    中心，可以和以上四种搭配</li>
+<li>x y       x y分别代表横纵坐标</li>
+</ul>
+</li>
+</ul>
+<h3 id="小太阳示例">小太阳示例</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-html" data-lang="html"><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="p">&lt;</span><span class="nt">html</span> <span class="na">lang</span><span class="o">=</span><span class="s">&#34;en&#34;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">charset</span><span class="o">=</span><span class="s">&#34;UTF-8&#34;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>$想不想知道后面写的是什么$<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">style</span><span class="p">&gt;</span>
+        <span class="nt">html</span><span class="p">{</span>
+            <span class="k">height</span><span class="p">:</span><span class="mi">100</span><span class="kt">%</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="nt">body</span><span class="p">{</span>
+            <span class="k">margin</span><span class="p">:</span> <span class="mi">0</span><span class="p">;</span>
+            <span class="k">background</span><span class="p">:</span> <span class="nb">radial-gradient</span><span class="p">(</span><span class="mi">300</span><span class="kt">px</span> <span class="n">at</span> <span class="kc">top</span> <span class="kc">right</span> <span class="p">,</span><span class="kc">orangered</span> <span class="p">,</span><span class="kc">yellow</span><span class="p">,</span><span class="kc">skyblue</span> <span class="p">)</span> <span class="p">;</span>
+            <span class="k">height</span><span class="p">:</span><span class="mi">100</span><span class="kt">%</span><span class="p">;</span>
+        <span class="p">}</span>  
+    <span class="p">&lt;/</span><span class="nt">style</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>运行结果如下:
+<img src="http://ok0w43sns.bkt.clouddn.com/sun.png" alt="小太阳"></p>
+<h3 id="关于小案例中body的注意">关于小案例中body的注意</h3>
+<p>body本身的高度默认是0，他的高度一般由内容撑开，所以不能直接设置背景，当填写高度100%时候继承父元素html的高度，父元素填写100%的时候，会继承根元素的高度这时Body的高度就是浏览器一屏幕的高度。</p>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">leemove</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        0001-01-01
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      
+      <nav class="post-nav">
+        <a class="prev" href="/post/c3%E4%B8%ADbackground%E7%9A%84%E6%96%B0%E7%8E%A9%E6%B3%95/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">C3背景新玩法</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/h5%E5%AF%B9dom%E7%9A%84%E6%89%A9%E5%B1%95/">
+            <span class="next-text nav-default">HTML5新增的DOM扩展</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  <span id="/post/c3%E9%A2%9C%E8%89%B2%E7%9A%84%E6%B8%90%E5%8F%98/" class="leancloud_visitors" data-flag-title="C3背景颜色的渐变">
+		<span class="post-meta-item-text">文章阅读量 </span>
+		<span class="leancloud-visitors-count">0</span>
+		<p></p>
+	  </span>
+  <div id="vcomments"></div>
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+  <script type="text/javascript">
+    new Valine({
+        el: '#vcomments' ,
+        appId: 'PWfjRKWRI7XHdT5J1DdlmXgW-gzGzoHsz',
+        appKey: 'QQYUAjv410rSChQylLlbSAgk',
+        notify:  false ,
+        verify:  false ,
+        avatar:'mm',
+        placeholder: '说点什么吧...',
+        visitor:  true 
+    });
+  </script>
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:hg_limu@163.com" class="iconfont icon-email" title="email"></a>
+  <a href="https://leemove.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2019 - 
+    2021<span class="heart"><i class="iconfont icon-heart"></i></span><span>leemove</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+<script id="baidu_analytics">
+  var _hmt = _hmt || [];
+  (function() {
+    if (window.location.hostname === 'localhost') return;
+    var hm = document.createElement("script"); hm.async = true;
+    hm.src = "https://hm.baidu.com/hm.js?f9e166a29c1fb015f42b67da5197bc39";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+  })();
+</script>
+
+
+
+
+
+
+</body>
+</html>

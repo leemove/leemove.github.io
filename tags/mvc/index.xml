@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>MVC on 小木屋</title>
+    <link>https://leemove.github.io/tags/mvc/</link>
+    <description>Recent content in MVC on 小木屋</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Mon, 04 Sep 2017 15:40:51 +0800</lastBuildDate><atom:link href="https://leemove.github.io/tags/mvc/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>从前端角度探讨下MVVM MVC</title>
+      <link>https://leemove.github.io/post/mvvmvsmvc/</link>
+      <pubDate>Mon, 04 Sep 2017 15:40:51 +0800</pubDate>
+      
+      <guid>https://leemove.github.io/post/mvvmvsmvc/</guid>
+      <description>首先声明一点,我不敢说让你花几分钟就可以完全理解这些概念.这篇文章是我个人的理解,并不一定完全正确!!!欢迎指正和讨论. 最近前端工程化越来越</description>
+    </item>
+    
+  </channel>
+</rss>
